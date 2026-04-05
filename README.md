@@ -161,6 +161,11 @@ python Home.py
 
 ---
 
+### Web development and deployment
+* Using streamlit for python based web dev
+* Future deployment using this module
+* Offers wide varierty of pre made css and html based functions and widgets
+
 ## Future Improvements
 
 * File input for ORF detection
