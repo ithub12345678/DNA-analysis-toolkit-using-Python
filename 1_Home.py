@@ -63,8 +63,8 @@ col5, col6 = st.columns(2)
 # Buttons
 with col5:
     if st.button("☘︎ Analyze GC Content From Fasta file Sequence"):
-        st.switch_page("Pages/FastA_analysis.py")
+        st.switch_page("Pages/3_FastA_analysis.py")
 
 with col6:
     if st.button("☘︎ Analyze GC Content From Raw Sequence"):
-        st.switch_page("Pages/Raw_analysis.py")
+        st.switch_page("Pages/2_Raw_analysis.py")
