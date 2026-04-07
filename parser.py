@@ -55,29 +55,28 @@ def clean_raw_seq(seq):
 
 def clean_fasta_seq(file):
     """
-    Cleans the FASTA sequence by:
-    - Removing header lines (starting with '>')
-    - Extracting sequence IDs and their corresponding sequences into a dictionary as key value pairs.
-    - Removing whitespace and newline characters from the sequences.
+    Parses FASTA and returns {id: cleaned_sequence}.
+    Removes all whitespace and validates nucleotides.
     """
+    try:
+        matches = re.findall(r">(.+?)\n([^>]*)", file)
 
-    match_id = re.findall(r">(.*?)(?=\W|\s|$)",file,re.DOTALL)
-    match_seq = re.findall(r"\n(.*?)(?=>|$)",file,re.DOTALL)
+        clean_dict = {}
 
-    # conventionally the . matches all character except the newline
-    # re.DOTALL enables selection of all the characters.
+        for ids, seq_block in matches:
+            # Remove ALL whitespace (newline, spaces, tabs)
+            seq = re.sub(r"\s+", "", seq_block).upper()
 
-    clean_dict = {}
-    for ids, seq in zip(match_id,match_seq):
-        seq = seq.replace("\\n","").replace("\\b","").upper()
-        for i in seq: 
-            if i not in Nucleotides:
-                st.error("Invalid characters in the file seq detected. Please upload a valid FASTA file containing only A, C, G, T characters.")
-                return False
-                
-        clean_dict[ids] = seq
+            invalid = set(seq) - set(Nucleotides)
+            if invalid:
+                raise ValueError(f"Invalid characters in sequence {ids}: {invalid}")
 
-    return clean_dict
+            clean_dict[ids] = seq
+
+        return clean_dict
+    except Exception as e:
+        st.error(f"An error occurred during FASTA file processing: {e} type error")
+        st.stop()
 
 """-------------------------------------------------------------"""
 
