@@ -1,13 +1,13 @@
 import streamlit as st
 
 # Page config
-st.set_page_config(page_title="GC Content Analyzer", layout="centered")
+st.set_page_config(page_title="GC and ORF Content Analyzer", layout="centered")
 
 # Title
 st.title("🧬 GC-Content Analyzer")
 
 # Intro text
-st.markdown("### Welcome to GC-Content Analyzer")
+st.markdown("### Welcome to GC and ORF Content Analyzer")
 
 # Q&A Section
 st.markdown("#### Q1. So, what does this app do?")
