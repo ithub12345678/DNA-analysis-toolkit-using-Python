@@ -13,7 +13,7 @@ st.write("ANS. A FASTA file is a widely used, plain text bioinformatics format d
            "symbol, followed by lines of raw sequence data. It supports multiple sequences per file, often saved as .fasta, .fa, .fna, or .faa..")
 
 st.markdown("#### Q2. What is the structure of a FASTA file?")
-st.image("assets/6.png", width=400)
+st.image("Assets/6.png", width=400)
 st.write("ANS. A FASTA file consists of one or more entries, each containing a header line and a sequence. The header line starts with a '>' character, followed by an identifier and optional description. " \
 "The sequence lines contain the actual nucleotide or amino acid sequences, which can be split across multiple lines for readability.")
 
