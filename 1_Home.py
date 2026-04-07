@@ -38,7 +38,7 @@ col7, col8 = st.columns(2)
 with col7:
     st.image("Assets/6.jpg", width=400)
 with col8:
-    st.image("Assets/7.jpg", width=400)
+    st.image("Assets/6.png", width=400)
 st.write("ANS. The GC-content of a strand of nucleic acid is the percentage of nucleotides in the strand that possess either cytosine or " \
 "guanine bases. For example, the GC-content of the RNA string [GAUCG] is 60%. " \
 "In double-stranded DNA, every guanine base is complementary to the cytosine base in the opposite strand, " \
