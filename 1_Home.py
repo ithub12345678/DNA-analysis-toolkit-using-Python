@@ -25,9 +25,9 @@ st.write("ANS. The GC Content Analyzer is a dedicated tool designed to " \
 st.markdown("#### Q2. What are nucleotides?")
 col1, col2 = st.columns(2)
 with col1:
-    st.image("assets/1.png", width=400)
+    st.image("Assets/1.png", width=400)
 with col2:
-    st.image("assets/2.png", width=400)
+    st.image("Assets/2.png", width=400)
 st.write("ANS. A nucleotide is the basic building block of nucleic acids "
 "(RNA and DNA). A nucleotide consists of a sugar molecule (either ribose in RNA or deoxyribose in DNA) " \
 "attached to a phosphate group and a nitrogen-containing base. The bases used in DNA are adenine (A), cytosine (C), " \
@@ -36,9 +36,9 @@ st.write("ANS. A nucleotide is the basic building block of nucleic acids "
 st.markdown("#### Q3. What is GC content and what is its significance?")
 col7, col8 = st.columns(2)
 with col7:
-    st.image("assets/6.jpg", width=400)
+    st.image("Assets/6.jpg", width=400)
 with col8:
-    st.image("assets/7.jpg", width=400)
+    st.image("Assets/7.jpg", width=400)
 st.write("ANS. The GC-content of a strand of nucleic acid is the percentage of nucleotides in the strand that possess either cytosine or " \
 "guanine bases. For example, the GC-content of the RNA string [GAUCG] is 60%. " \
 "In double-stranded DNA, every guanine base is complementary to the cytosine base in the opposite strand, " \
