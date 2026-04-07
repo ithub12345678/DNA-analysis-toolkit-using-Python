@@ -3,6 +3,9 @@ import streamlit as st
 # Page config
 st.set_page_config(page_title="GC Content Analyzer", layout="centered")
 
+import streamlit as st
+st.write(st.experimental_get_pages())
+
 # Title
 st.title("🧬 GC-Content Analyzer")
 
