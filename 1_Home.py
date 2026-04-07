@@ -62,7 +62,8 @@ Ready = st.toggle("Ready to analyze your sequence?", value=False)
 col5, col6 = st.columns(2)
 # Buttons
 with col5:
-    st.page_link("pages/3_FastA_analysis.py", label="Analyze GC Content From FastA Sequence", icon="1️⃣")
-
+    if st.button("RAW"):
+        st.switch_page("pages/2_Raw_analysis.py")
 with col6:
-    st.page_link("pages/2_Raw_analysis.py", label="Analyze GC Content From Raw Sequence", icon="2️⃣")
+    if st.button("Fasta"):
+        st.switch_page("pages/3_FastA_analysis.py")
