@@ -3,6 +3,8 @@ from collections import Counter
 import matplotlib.pyplot as plt
 import streamlit as st
 import parser
+import plotly.graph_objects as go
+
 
 
 
@@ -31,7 +33,7 @@ def seqs_calculation(file):
             at_percent[key] = round(at, 2)
 
     except Exception as e:
-        # st.error(f"An error occurred during FASTA file processing: {e}")
+        st.error(f"An error occurred during FASTA file processing: {e} type error")
         st.stop()
 
     return nucleotide_counts, gc_percent, at_percent, seq_dict
@@ -45,6 +47,7 @@ def slider(info,id,min_val,max_val,default_window,step_size):
 
     if sliding_window_size > N:
                     st.error(f"GC Content can't be analyzed for sliding windows of size {sliding_window_size}.")
+                    st.stop()
     else:
             splits = []
             splits_gc_percent = []
@@ -68,6 +71,7 @@ def slider(info,id,min_val,max_val,default_window,step_size):
 
 @st.fragment
 def analyze_fasta(file):
+        try:
             """Analyzes the GC content of sequences in a FASTA file and visualizes the results."""
             info = seqs_calculation(file)
             st.markdown("### GC content analysis completed! Here are the results:")
@@ -116,6 +120,10 @@ def analyze_fasta(file):
 
                 else:  # N > 1000
                     slider(info,id,5, N//20, N//50, 5)
+        
+        except Exception as e:
+            st.error(f"An error occurred during GC analysis: {e} type error")
+            st.stop()
 
 """-------------------------------------------------------------"""
 
@@ -177,9 +185,11 @@ def seq_calculations(seq,window_size):
                         if len(slide) >= window_size: 
                             splits.append(slide)
                             splits_gc_percent.append(gc_at_Percentage_raw(slide)[1])
+
                     # -----------------------------
                     # 3. Visualization Section
                     # -----------------------------
+
                     st.subheader("Nucleotide Count Visualization")
                     fig , ax = plt.subplots()
                     for i in range(len(count.keys())):
@@ -190,18 +200,30 @@ def seq_calculations(seq,window_size):
                     ax.set_ylabel('Count')
                     st.pyplot(fig)
 
+
                     st.subheader("GC Content Across Sliding Windows")
-                    ax.clear()
-                    fig, ax = plt.subplots()
-                    for i in range(len(splits)):
-                        plt.text(i, splits_gc_percent[i], splits_gc_percent[i], ha='center')
-                    ax.bar(splits, splits_gc_percent, color='orange')
-                    ax.set_title(f'GC Content in Sliding Windows of Size {window_size}')
-                    ax.set_xlabel('Sequence Window')
-                    ax.set_ylabel('GC Content (%)')
-                    plt.tick_params(axis='x', labelbottom=False)
-                    # plt.xticks(rotation=45, ha='right')
-                    st.pyplot(fig)
+
+                    fig = go.Figure()
+
+                    fig.add_trace(go.Bar(
+                        y=splits,                          # reads / windows on Y-axis
+                        x=splits_gc_percent,               # GC % on X-axis
+                        orientation='h',
+                        text=[f"{v:.2f}%" for v in splits_gc_percent],  # labels inside bars
+                        textposition='inside'
+                    ))
+
+                    fig.update_layout(
+                        title=f'GC Content in Sliding Windows (Size {window_size})',
+                        xaxis_title='GC Content (%)',
+                        yaxis_title='Sequence Window',
+                        height=max(400, len(splits) * 25),  # dynamic height to avoid clutter
+                    )
+
+                    # Enable scroll + zoom behavior
+                    fig.update_yaxes(automargin=True)
+
+                    st.plotly_chart(fig, use_container_width=True)
 
 """-------------------------------------------------------------"""
 @st.fragment
