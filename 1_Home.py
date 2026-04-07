@@ -4,7 +4,7 @@ import streamlit as st
 st.set_page_config(page_title="GC and ORF Content Analyzer", layout="centered")
 
 # Title
-st.title("🧬 GC-Content Analyzer")
+st.title("🧬 GC and ORF Content Analyzer")
 
 # Intro text
 st.markdown("### Welcome to GC and ORF Content Analyzer")
