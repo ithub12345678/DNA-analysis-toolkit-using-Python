@@ -63,7 +63,7 @@ col5, col6 = st.columns(2)
 # Buttons
 with col5:
     if st.button("RAW"):
-        st.write("pages/2_Raw_analysis.py")
+        st.switch_page("2_Raw_analysis.py")
 with col6:
     if st.button("Fasta"):
-        st.switch_page("pages/3_FastA_analysis.py")
+        st.switch_page("3_FastA_analysis.py")
