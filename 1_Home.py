@@ -3,10 +3,6 @@ import streamlit as st
 # Page config
 st.set_page_config(page_title="GC Content Analyzer", layout="centered")
 
-from streamlit.source_util import get_pages
-pages = get_pages("1_Home.py")
-st.write(pages)
-
 # Title
 st.title("🧬 GC-Content Analyzer")
 
@@ -67,8 +63,8 @@ col5, col6 = st.columns(2)
 # Buttons
 with col5:
     if st.button("☘︎ Analyze GC Content From Fasta file Sequence"):
-        st.switch_page("DNA-analysis-toolkit-using-Python/pages/3_FastA_analysis.py")
+        st.switch_page("pages/3_FastA_analysis.py")
 
 with col6:
     if st.button("☘︎ Analyze GC Content From Raw Sequence"):
-        st.switch_page("DNA-analysis-toolkit-using-Python/pages/2_Raw_analysis.py")
+        st.switch_page("pages/2_Raw_analysis.py")
